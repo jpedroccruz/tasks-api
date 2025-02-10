@@ -1,4 +1,4 @@
-import { create, getAll, getById, update } from "../services/taskServices"
+import { create, deleteById, getAll, getById, update } from "../services/taskServices"
 
 export async function getTasks(_: any, res: any) {
   const tasks = await getAll()
@@ -25,4 +25,10 @@ export async function updateTask(req: any, res: any) {
 
   update(id, status)
   res.status(200).json({ mensage: "Task status updated."})
+}
+
+export async function deleteTask(req: any, res: any) {
+  const { id } = req.params
+  deleteById(id)
+  res.status(200).json({ mensage: "Task deleted." })
 }
