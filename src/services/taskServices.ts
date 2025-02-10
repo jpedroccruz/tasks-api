@@ -24,3 +24,7 @@ export async function create(
 export async function update(id: number, status: string) {
   connection.query(`UPDATE task SET status = '${status}' WHERE id = ${id}`)
 }
+
+export async function deleteById(id: number) {
+  connection.query(`DELETE FROM task WHERE id = ${id}`)
+}
