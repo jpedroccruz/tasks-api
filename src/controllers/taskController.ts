@@ -1,4 +1,4 @@
-import { createNewTask, getAllTasks, getUniqueTask } from "../services/taskServices"
+import { createNewTask, updateTaskStatus, getAllTasks, getUniqueTask } from "../services/taskServices"
 
 export async function getTasks(_: any, res: any) {
   const tasks = await getAllTasks()
@@ -17,4 +17,12 @@ export async function createTask(req: any, res: any) {
 
   createNewTask(title, description, 'pending', created_at)
   res.status(201).json({ mensage: "Task created." })
+}
+
+export async function updateTask(req: any, res: any) {
+  const { status } = req.body
+  const { id } = req.params
+
+  updateTaskStatus(id, status)
+  res.status(200).json({ mensage: "Task status updated."})
 }

@@ -20,3 +20,7 @@ export async function createNewTask(
     `INSERT INTO task (title, description, status, created_at) VALUES ('${title}', '${description}', '${status}', '${created_at}')`
   )
 }
+
+export async function updateTaskStatus(id: number, status: string) {
+  connection.query(`UPDATE task SET status = '${status}' WHERE id = ${id}`)
+}
