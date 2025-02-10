@@ -1,16 +1,16 @@
 import connection from "../models/connection"
 
-export async function getAllTasks() {
+export async function getAll() {
   const [ results ] = await connection.query('SELECT * FROM task')
   return results
 }
 
-export async function getUniqueTask(id: number) {
+export async function getById(id: number) {
   const [ result ] = await connection.query(`SELECT * FROM task WHERE id = ${id}`)
   return result
 }
 
-export async function createNewTask(
+export async function create(
   title: string,
   description:string,
   status:string,
@@ -21,6 +21,6 @@ export async function createNewTask(
   )
 }
 
-export async function updateTaskStatus(id: number, status: string) {
+export async function update(id: number, status: string) {
   connection.query(`UPDATE task SET status = '${status}' WHERE id = ${id}`)
 }
