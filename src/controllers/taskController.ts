@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import { create, getAll, getById, update } from "../services/taskServices"
-=======
-import { create, update, getAll, getById } from "../services/taskServices"
->>>>>>> 88f1fe1d6cf564e0d89e47e34ffa6757282dce59
 
 export async function getTasks(_: any, res: any) {
   const tasks = await getAll()
