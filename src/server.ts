@@ -11,5 +11,6 @@ app.get('/test', (_, res) => {
 app.use(json())
 app.get('/tasks', getTasks)
 app.get('/tasks/:id', getTask)
+app.post('/tasks', createTask)
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`))
