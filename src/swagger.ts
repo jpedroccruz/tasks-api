@@ -16,7 +16,7 @@ const options = {
       schemas: {
         Task: {
           type: 'object',
-          require: ['title', 'description', 'status', 'created_at'],
+          required: ['title', 'description', 'status', 'created_at'],
           properties: {
             title: {
               type: 'string',
