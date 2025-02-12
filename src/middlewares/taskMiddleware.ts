@@ -1,6 +1,14 @@
 import { Request, Response, NextFunction } from "express"
 import BadRequest from "./_error/badRequest"
 
+export function validateTaskId(req: Request, _: Response, next: NextFunction) {
+  const { id } = req.params
+
+  if (isNaN(parseInt(id))) throw new BadRequest('Task ID must be a Integer number')
+
+  next()
+}
+
 export function validateTitle(req: Request, _: Response, next: NextFunction) {
   const { body } = req
 
