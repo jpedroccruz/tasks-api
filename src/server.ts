@@ -1,6 +1,7 @@
 import express, { json } from 'express'
 import tasksRoute from './routes/taskRoute'
 import swagerRoute from './routes/swagerRoute'
+import errorHandler from './middlewares/errorHandler'
 
 const app = express()
 const PORT = process.env.PORT || 3333
@@ -12,5 +13,6 @@ app.get('/test', (_, res) => {
 app.use(json())
 app.use(swagerRoute)
 app.use(tasksRoute)
+app.use(errorHandler)
 
 app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`))
