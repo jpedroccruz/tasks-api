@@ -4,7 +4,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "seed": "tsx src/models/seed.ts"
+    "seed": "tsx src/models/seed.ts",
+    "build": "tsup src --format esm",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
@@ -24,6 +26,7 @@
     "@types/mysql": "^2.15.26",
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.7",
+    "tsup": "^8.3.6",
     "tsx": "^4.19.2",
     "typescript": "^5.7.3"
   }
