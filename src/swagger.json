@@ -136,6 +136,21 @@
                 }
               }
             }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type":"object",
+                  "properties": {
+                    "mensage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       },
@@ -191,7 +206,7 @@
             }
           },
           "400": {
-            "description":"There is some information missing in body request",
+            "description":"Bad request",
             "content": {
               "application/json": {
                 "schema": {
@@ -223,6 +238,21 @@
         "responses": {
           "200": {
             "description": "Task deleted successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "mensage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
             "content": {
               "application/json": {
                 "schema": {
