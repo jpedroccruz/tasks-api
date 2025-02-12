@@ -41,21 +41,6 @@
               }
               }
             }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "mensage": {
-                      "type": "string"
-                    }
-                  }
-                }
-              }
-            }
           }
         }
       },
