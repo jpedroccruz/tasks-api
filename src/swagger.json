@@ -27,7 +27,18 @@
                   "items": {
                     "$ref": "#/components/schemas/Task"
                   }
+                },
+                "examples": {
+                "Tasks":{
+                  "value": {
+                    "id": 0,
+                    "title": "Study Typescript",
+                    "description": "Study Typescript using roadmap.sh",
+                    "status": "pending",
+                    "created_at": "11/02/2025"
+                  }
                 }
+              }
               }
             }
           }
@@ -41,33 +52,24 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object",
-                  "properties": {
-                    "title": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "status": {
-                      "type": "string"
-                    },
-                    "created_at": {
-                      "type": "string"
-                    }
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
                   }
                 }
-              }
-            },
-            "examples": {
-              "Tasks":{
-                "value": {
-                  "title": "Study Typescript",
-                  "description": "Study Typescript using roadmap.sh",
-                  "status": "pending",
-                  "created_at": "11/02/2025"
+              },
+              "examples": {
+                "Tasks":{
+                  "value": {
+                    "title": "Study Typescript",
+                    "description": "Study Typescript using roadmap.sh",
+                    "status": "pending",
+                    "created_at": "11/02/2025"
+                  }
                 }
               }
             }
@@ -150,6 +152,28 @@
             "required": true
           }
         ],
+        "requestBody": {
+          "description": "Send current task status",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "mensage": {
+                    "type": "string"
+                  }
+                }
+              },
+              "examples": {
+                "Tasks":{
+                  "value": {
+                    "status": "completed"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Task updated successful",
