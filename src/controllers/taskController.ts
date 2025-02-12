@@ -8,7 +8,7 @@ export async function getTasks(_: Request, res: Response) {
 
 export async function getTask(req: Request, res: Response) {
   const { id } = req.params
-  const task = await getById(id)
+  const task = await getById(parseInt(id))
   res.status(200).json(task)
 }
 
@@ -23,13 +23,12 @@ export async function createTask(req: Request, res: Response) {
 export async function updateTask(req: Request, res: Response) {
   const { status } = req.body
   const { id } = req.params
-
-  update(id, status)
+  update(parseInt(id), status)
   res.status(200).json({ mensage: "Task status updated."})
 }
 
 export async function deleteTask(req: Request, res: Response) {
   const { id } = req.params
-  deleteById(id)
+  deleteById(parseInt(id))
   res.status(200).json({ mensage: "Task deleted." })
 }
