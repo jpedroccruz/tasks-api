@@ -1,9 +1,13 @@
-import { Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import { create, deleteById, getAll, getById, update } from "../services/taskServices"
 
-export async function getTasks(_: Request, res: Response) {
-  const tasks = await getAll()
-  res.status(200).json(tasks)
+export async function getTasks(_: Request, res: Response, next: NextFunction) {
+  try {
+    const tasks = await getAll()
+    res.status(200).json(tasks)
+  } catch (error) {
+    next(error)
+  }
 }
 
 export async function getTask(req: Request, res: Response) {

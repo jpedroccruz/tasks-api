@@ -1,8 +1,13 @@
 import connection from "../models/connection"
 
 export async function getAll() {
-  const [ results ] = await connection.query('SELECT * FROM task')
-  return results
+  try {
+    const [ results ] = await connection.query('SELECT * FROM task')
+    return results
+  } catch (error) {
+    console.error(error)
+    throw new Error("Database connection failed.")
+  }
 }
 
 export async function getById(id: number) {
