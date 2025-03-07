@@ -1,13 +1,10 @@
+import catchErrors from "../middlewares/catchErrors"
 import connection from "../models/connection"
 
 export async function getAll() {
-  try {
-    const [ results ] = await connection.query('SELECT * FROM task')
-    return results
-  } catch (error) {
-    console.error(error)
-    throw new Error("Database connection failed.")
-  }
+  const [tasksErr, tasksResult] = await catchErrors(connection.query('SELECT * FROM task'))
+  if (tasksErr) throw new Error("Query Database failed.")
+  return tasksResult![0]
 }
 
 export async function getById(id: number) {
