@@ -19,9 +19,10 @@ export async function create(
   status:string,
   created_at:string
 ) {
-  connection.query(
+  const [ postTaskErr ] = await catchErrors(connection.query(
     `INSERT INTO task (title, description, status, created_at) VALUES ('${title}', '${description}', '${status}', '${created_at}')`
-  )
+  ))
+  if (postTaskErr) throw new Error("Query Database failed.")
 }
 
 export async function update(id: number, status: string) {

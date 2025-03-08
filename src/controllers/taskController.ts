@@ -11,15 +11,15 @@ export async function getTasks(_: Request, res: Response, next: NextFunction) {
 export async function getTask(req: Request, res: Response, next: NextFunction) {
   const { id } = req.params
   const [ taskErr, taskResult ] = await catchErrors(getById(parseInt(id)))
-  if (taskErr) next(taskErr)
+  if (taskErr) return next(taskErr)
   res.status(200).json(taskResult)
 }
 
-export async function createTask(req: Request, res: Response) {
+export async function createTask(req: Request, res: Response, next: NextFunction) {
   const { title, description } = req.body
   const created_at = (new Date).toLocaleDateString()
-
-  create(title, description, 'pending', created_at)
+  const [ postTaskErr ] = await catchErrors(create(title, description, 'pending', created_at))
+  if (postTaskErr) return next(postTaskErr)
   res.status(201).json({ mensage: "Task created." })
 }
 
