@@ -31,5 +31,6 @@ export async function update(id: number, status: string) {
 }
 
 export async function deleteById(id: number) {
-  connection.query(`DELETE FROM task WHERE id = ${id}`)
+  const [ deleteTaskErr ] = await catchErrors(connection.query(`DELETE FROM task WHERE id = ${id}`))
+  if (deleteTaskErr) throw new Error("Query Database failed.")
 }

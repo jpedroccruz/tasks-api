@@ -31,8 +31,9 @@ export async function updateTask(req: Request, res: Response, next: NextFunction
   res.status(200).json({ mensage: "Task status updated."})
 }
 
-export async function deleteTask(req: Request, res: Response) {
+export async function deleteTask(req: Request, res: Response, next: NextFunction) {
   const { id } = req.params
-  deleteById(parseInt(id)) 
+  const [ deleteTaskErr ] = await catchErrors(deleteById(parseInt(id)))
+  if (deleteTaskErr) return next(deleteTaskErr)
   res.status(200).json({ mensage: "Task deleted." })
 }
