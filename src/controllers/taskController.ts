@@ -23,10 +23,11 @@ export async function createTask(req: Request, res: Response, next: NextFunction
   res.status(201).json({ mensage: "Task created." })
 }
 
-export async function updateTask(req: Request, res: Response) {
+export async function updateTask(req: Request, res: Response, next: NextFunction) {
   const { status } = req.body
   const { id } = req.params
-  update(parseInt(id), status)
+  const [ updateTaskErr ] = await catchErrors(update(parseInt(id), status))
+  if (updateTaskErr) return next(updateTaskErr)
   res.status(200).json({ mensage: "Task status updated."})
 }
 

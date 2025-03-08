@@ -26,7 +26,8 @@ export async function create(
 }
 
 export async function update(id: number, status: string) {
-  connection.query(`UPDATE task SET status = '${status}' WHERE id = ${id}`)
+  const [ updateTaskErr ] = await catchErrors(connection.query(`UPDATE task SET status = '${status}' WHERE id = ${id}`))
+  if (updateTaskErr) throw new Error("Query Database failed.")
 }
 
 export async function deleteById(id: number) {
