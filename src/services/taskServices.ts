@@ -2,14 +2,15 @@ import catchErrors from "../middlewares/catchErrors"
 import connection from "../models/connection"
 
 export async function getAll() {
-  const [tasksErr, tasksResult] = await catchErrors(connection.query('SELECT * FROM task'))
+  const [ tasksErr, tasksResult ] = await catchErrors(connection.query('SELECT * FROM task'))
   if (tasksErr) throw new Error("Query Database failed.")
   return tasksResult![0]
 }
 
 export async function getById(id: number) {
-  const [ result ] = await connection.query(`SELECT * FROM task WHERE id = ${id}`)
-  return result
+  const [ taskErr, taskResult ] = await catchErrors(connection.query(`SELECT * FROM task WHERE id = ${id}`))
+  if (taskErr) throw new Error("Query Database failed.")
+  return taskResult![0]
 }
 
 export async function create(

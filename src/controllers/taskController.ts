@@ -8,10 +8,11 @@ export async function getTasks(_: Request, res: Response, next: NextFunction) {
   res.status(200).json(tasksResult)
 }
 
-export async function getTask(req: Request, res: Response) {
+export async function getTask(req: Request, res: Response, next: NextFunction) {
   const { id } = req.params
-  const task = await getById(parseInt(id))
-  res.status(200).json(task)
+  const [ taskErr, taskResult ] = await catchErrors(getById(parseInt(id)))
+  if (taskErr) next(taskErr)
+  res.status(200).json(taskResult)
 }
 
 export async function createTask(req: Request, res: Response) {
