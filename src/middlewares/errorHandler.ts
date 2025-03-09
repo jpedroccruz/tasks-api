@@ -1,11 +1,8 @@
 import { NextFunction, Request, Response } from 'express'
-import BadRequest from './_error/badRequest'
+import { ApiError } from './_error/apiErrors'
 
-export default function errorHandler(error: Error, _: Request, res: Response, next: NextFunction) {
-  if (error instanceof BadRequest) {
-    res.status(400).json({ mensage: error.message })
-    return
-  }
-
-  res.status(500).json({ mensage: error.message || "Internal Server Error" })
+export default function errorHandler(error: Error & ApiError, _: Request, res: Response, next: NextFunction) {
+  const statusCode = error.statusCode ?? 500
+  const menssage = error.statusCode ? error.message : "Internal Server Error"
+  res.status(statusCode).json({ menssage })
 }

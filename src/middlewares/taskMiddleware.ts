@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express"
-import BadRequest from "./_error/badRequest"
+import { BadRequest } from "./_error/apiErrors"
 
 export function validateTaskId(req: Request, _: Response, next: NextFunction) {
   const { id } = req.params
@@ -12,9 +12,8 @@ export function validateTaskId(req: Request, _: Response, next: NextFunction) {
 export function validateTitle(req: Request, _: Response, next: NextFunction) {
   const { body } = req
 
-  if (body.title === undefined || body.title === '') {
+  if (body.title === undefined || body.title === '') 
     throw new BadRequest("Title field can't be undefined or empty.")
-  }
 
   next()
 }
@@ -22,9 +21,8 @@ export function validateTitle(req: Request, _: Response, next: NextFunction) {
 export function validateDescription(req: Request, _: Response, next: NextFunction) {
   const { body } = req
 
-  if (body.description === undefined || body.description === '') {
+  if (body.description === undefined || body.description === '') 
     throw new BadRequest("Description field can't be undefined or empty.")
-  }
 
   next()
 }
@@ -32,13 +30,11 @@ export function validateDescription(req: Request, _: Response, next: NextFunctio
 export function validateStatus(req: Request, _: Response, next: NextFunction) {
   const { body } = req
 
-  if (body.status === undefined || body.status === '') {
+  if (body.status === undefined || body.status === '')
     throw new BadRequest("Status field can't be undefined or empty.")
-  }
 
-  if (body.status != 'pending' && body.status != 'completed') {
+  if (body.status != 'pending' && body.status != 'completed') 
     throw new BadRequest("Status field can only be 'pending' or 'completed'.")
-  }
 
   next()
 }
